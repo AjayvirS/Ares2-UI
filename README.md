@@ -16,7 +16,7 @@ A tiny JavaFX application that lets you **point-&-click-generate security test c
 
 ---
 
-## 🏗 Prerequisites
+## Prerequisites
 | Tool | Version |
 |------|---------|
 | Java | **17** or newer |
@@ -30,7 +30,7 @@ A tiny JavaFX application that lets you **point-&-click-generate security test c
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # clone & build
