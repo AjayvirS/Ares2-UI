@@ -9,7 +9,7 @@ A tiny JavaFX application that lets you **point-&-click-generate security test c
 * **Three path inputs**  
   1. `policyfile.yaml` – exercise-specific network policy  
   2. `repo` – local checkout of the student assignment  
-  3. *(optional)* `tests/` – folder to place generated JUnit tests  
+  3.  `tests/` – folder to place generated JUnit tests  
 * Generates JUnit 5 dynamic tests that can be used during exercise evaluation to isolate/verify, s.t. remote code cannot gain access to unauthorized resources
 * Detects **Maven vs. Gradle** and runs the matching build tool.
 * Streams Phobos logs to the GUI **and** to `/localhost:9001/logs`.
