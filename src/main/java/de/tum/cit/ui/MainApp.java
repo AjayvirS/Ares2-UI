@@ -1,6 +1,7 @@
 package de.tum.cit.ui;
 
 import de.tum.cit.ase.ares.api.policy.SecurityPolicyReaderAndDirector;
+import de.tum.cit.ui.http.LogServer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -8,9 +9,21 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.nio.file.*;
 
 public class MainApp extends Application {
+
+    private LogServer logServer;
+
+    @Override
+    public void init() throws IOException {
+        int port = getParameters().getUnnamed().stream()
+                .filter(s -> s.startsWith("--logPort="))
+                .mapToInt(s -> Integer.parseInt(s.substring(10)))
+                .findFirst().orElse(9001);  // default
+        logServer = LogServer.start(port);
+    }
 
     @Override
     public void start(Stage stage) {
@@ -34,7 +47,6 @@ public class MainApp extends Application {
         gp.add(btnRun, 1, r++);
         gp.add(log, 0, r, 2, 1);
 
-        /* ── click handler ────────────────────────────────────────────── */
         btnRun.setOnAction(ev -> {
             log.clear();
             try {
@@ -47,12 +59,10 @@ public class MainApp extends Application {
                 if (!Files.isDirectory(repo))
                     throw new IllegalArgumentException("Repo path is not a directory: " + repo);
 
-                /* resolve tests dir – default is “test” inside repo */
 
                 Path phobosResources = repo.resolve("phobos");
                 Files.createDirectories(phobosResources);
 
-                /* build + write tests via Ares/Phobos */
                 SecurityPolicyReaderAndDirector.builder()
                         .securityPolicyFilePath(policy)
                         .projectFolderPath(repo)
@@ -88,6 +98,11 @@ public class MainApp extends Application {
         stage.setScene(new Scene(gp, 700, 380));
         stage.setTitle("Phobos bundle generator");
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        if (logServer != null) logServer.stop();
     }
 
 }
