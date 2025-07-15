@@ -2,9 +2,8 @@
 
 A tiny JavaFX application that lets you **point-&-click-generate security test case files** for student repositories using the Phobos sandbox from
 [Ares 2](https://github.com/ls1intum/Ares2)  
-(runs at **`http://localhost:9001`** by default).
 
----
+
 
 ## Features
 * **Three path inputs**  
