@@ -26,7 +26,7 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception{
         /* ── input fields ──────────────────────────────────────────────── */
         TextField tfPolicy = new TextField();
         TextField tfRepo   = new TextField();
@@ -91,9 +91,14 @@ public class MainApp extends Application {
 
             } catch (Exception ex) {
                 log.appendText("ERROR: " + ex.getMessage() + "\n");
+                try {
+                    throw ex;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
-
+//de/tum/cit/ase/ares/api/templates/architecture/ArchitectureTestCaseSupported.java
         /* ── stage setup ──────────────────────────────────────────────── */
         stage.setScene(new Scene(gp, 700, 380));
         stage.setTitle("Phobos bundle generator");

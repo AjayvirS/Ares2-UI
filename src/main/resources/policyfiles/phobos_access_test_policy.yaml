@@ -1,0 +1,43 @@
+regardingTheSupervisedCode:
+  theFollowingProgrammingLanguageConfigurationIsUsed: JAVA_USING_MAVEN_ARCHUNIT_AND_INSTRUMENTATION
+  theSupervisedCodeUsesTheFollowingPackage: "de.tum.cit.ase"
+  theMainClassInsideThisPackageIs: "Main"
+  theFollowingClassesAreTestClasses: [ ]
+  theFollowingResourceAccessesArePermitted:
+    regardingFileSystemInteractions:
+      - onThisPathAndAllPathsBelow: "/tmp"
+        readAllFiles:      true
+        overwriteAllFiles: true
+        executeAllFiles:   false
+        deleteAllFiles:    true
+      - onThisPathAndAllPathsBelow: "/bin/echo"
+        readAllFiles:      true
+        overwriteAllFiles: false
+        executeAllFiles:   true
+        deleteAllFiles:    false
+      - onThisPathAndAllPathsBelow: "/lib"
+        readAllFiles:      true
+        overwriteAllFiles: false
+        executeAllFiles:   false
+        deleteAllFiles:    false
+      - onThisPathAndAllPathsBelow: "/lib64"
+        readAllFiles:      true
+        overwriteAllFiles: false
+        executeAllFiles:   false
+        deleteAllFiles:    false
+      - onThisPathAndAllPathsBelow: "/usr/lib"
+        readAllFiles:      true
+        overwriteAllFiles: false
+        executeAllFiles:   false
+        deleteAllFiles:    false
+    regardingNetworkConnections:
+      - onTheHost:  "artemis-test2.artemis.cit.tum.de"
+        onThePort:  443
+        openConnections: true
+        sendData:        true
+        receiveData:     true
+    regardingCommandExecutions: [ ]
+    regardingThreadCreations:  [ ]
+    regardingPackageImports:   [ ]
+    regardingTimeouts:
+      - timeout: 120

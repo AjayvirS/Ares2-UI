@@ -102,9 +102,20 @@
                             </transformers>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>debug</id>
+                        <configuration>
+                            <mainClass>de.tum.cit.ui.MainApp</mainClass>
+                            <options>
+                                <option>-agentlib:jdwp=transport=dt_socket,server=y,address=*:5005</option>
+                            </options>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
         </plugins>
+
     </build>
 </project>
