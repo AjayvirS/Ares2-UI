@@ -9,10 +9,10 @@ A tiny JavaFX application that lets you **point-&-click-generate security test c
 * **Three path inputs**  
   1. `policyfile.yaml` – exercise-specific network policy  
   2. `repo` – local checkout of the student assignment  
-  3.  `tests/` – folder to place generated JUnit tests  
-* Generates JUnit 5 dynamic tests that can be used during exercise evaluation to isolate/verify, s.t. remote code cannot gain access to unauthorized resources
-* Detects **Maven vs. Gradle** and runs the matching build tool.
+  3.  `tests/` – folder to place generated Ares2 test resources
+* Generates security tests that can be used during exercise evaluation to isolate/verify student code, s.t. remote code cannot gain access to unauthorized resources
 * Streams Phobos logs to the GUI **and** to `/localhost:9001/logs`.
+* Shows a log and verifies expected artefacts.
 
 ---
 
@@ -30,13 +30,25 @@ A tiny JavaFX application that lets you **point-&-click-generate security test c
 
 ---
 
-## Quick Start
+## Build Ares2 locally (required at least once)
+
+Clone and install the Ares2 library so Ares2‑UI can depend on it:
 
 ```bash
-# clone & build
-git clone https://github.com/<your-org>/ares-ui.git
-cd ares-ui
-mvn clean package            # pulls javafx + ares
+git clone https://github.com/ls1intum/Ares2.git
+cd Ares2
+git checkout feature/phobos-integration
+mvn -DskipTests clean install
+```
 
-# run the GUI (port 9001 configurable)
-mvn javafx:run -Dexec.args="--httpPort=9001"
+This publishes Ares2 artifacts to your local ~/.m2 repository.
+
+## Build and Run Ares2-UI
+
+```bash
+git clone https://github.com/AjayvirS/Ares2-UI.git
+cd Ares2-UI
+mvn clean javafx:run
+```
+
+
